@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, request, Response
+from flask_sqlalchemy import SQLAlchemy
 from flask import jsonify
-
+import json
+import dicttoxml
 from model import Reports
 
 app = Flask(__name__)
@@ -25,6 +26,14 @@ def get_all_reports():
 def get_report(id):
     report = Reports.query.get(id)
     return report.type
+
+@app.route('/api/report/<int:id>/xml/')
+def get_xml_report(id):
+    report = Reports.query.get(id).type
+    obj = json.loads(report)
+    xml = dicttoxml.dicttoxml(obj)
+    return Response(xml, mimetype='text/xml')
+
 
 @app.errorhandler(404)
 def page_not_found(error):
