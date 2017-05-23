@@ -32,7 +32,7 @@ def get_report(id):
     report = Reports.query.get(id)
     return report.type
 
-
+# XML endpoint
 @app.route('/api/report/<int:id>.xml/')
 def get_xml_report(id):
     report = Reports.query.get(id)
@@ -40,10 +40,10 @@ def get_xml_report(id):
     xml = dicttoxml.dicttoxml(obj)
     return Response(xml, mimetype='text/xml')
 
-
-@app.route('/api/report/<int:id>.pdf')
+# PDF endpoint
+@app.route('/api/report/<int:id>.pdf/')
 def get_pdf_report(id):
-    # Make a PDF from another view
+	# converting string to dictionary
     report = ast.literal_eval(Reports.query.get(id).type)
     report['created']  = datetime.now().strftime('%Y-%m-%d') # timestamp
     html = render_template('report.html',report= report)
