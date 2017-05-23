@@ -14,10 +14,18 @@ Basic Commands
 API Endpoints
 ^^^^^^^^^^^^^
 
-/api/reports/ 
-/api/report/1/
-/api/repot/1.xml/
-/api/report/1.pdf/
+
++---------------------+------------------------+ 
+| Endpoints           | Comments               | 
++=====================+========================+ 
+|/api/reports/        | list all report        | 
++---------------------+------------------------+ 
+|/api/report/<id>/    | list specific report   | 
++---------------------+------------+-----------+ 
+|/api/repot/<id>.xml/ | list report in XML     | 
++---------------------+------------------------+
+|/api/report/<id>.pdf/| list report in PDF     |
++---------------------+------------------------+
 
     
 
